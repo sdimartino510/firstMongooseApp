@@ -1,7 +1,5 @@
 const { Todo, User } = require('./../models');
 
-
-
 module.exports = {
   addTodo: async (req, res) => {
     const { text, userId } = req.body;
