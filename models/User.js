@@ -29,7 +29,13 @@ const UserSchema = new Schema({
   dateCreated: {
     type: Date,
     default: Date.now()
-  }
+  },
+  todos: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Todo'
+    }
+  ]
 })
 
 module.exports = model('User', UserSchema);
