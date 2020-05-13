@@ -45,3 +45,5 @@ const localLogin = new LocalStrategy(localOptions, async (email, password, done)
 });
 
 passport.use(jwtLogin);
+
+passport.use(localLogin);
