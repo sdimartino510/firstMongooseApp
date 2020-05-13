@@ -12,6 +12,8 @@ app.use(express.json());
 
 app.use(routes);
 
+require('./services/passport');
+
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/redux_todo_db',
   {
     useNewUrlParser: true,
