@@ -1,5 +1,12 @@
 const { isEmail, isLength } = require('validator');
+const jwt = require('jwt-simple');
 const { User } = require('./../models');
+const { secret } = require('./../config');
+
+function tokenForUser(user) {
+  const timeStamp = new Date().getTime();
+  return jwt.encode({ sub: user._id, iat: timeStamp }, secret);
+}
 
 module.exports = {
   signUp: async(req, res) => {
@@ -23,7 +30,7 @@ module.exports = {
         return res.status(401).json({ error: 'That email already exists' });
       }
       const user = await new User({ email, password }).save();
-      return res.status(200).json(user);
+      return res.status(200).json({ token: tokenForUser(user) });
     } catch (e) {
       return res.status(403).json(e);
     }
