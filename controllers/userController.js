@@ -19,7 +19,7 @@ module.exports = {
   },
   getAllUserEmails: async (req, res) => {
     try {
-      const users = await User.find()
+      const users = await User.find({}, 'email')
       if (!users) {
         return res.status(404).json({ error: 'No users yet' });
       }
