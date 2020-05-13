@@ -34,5 +34,6 @@ module.exports = {
     } catch (e) {
       return res.status(403).json(e);
     }
-  }
+  },
+  signIn: (req, res) => res.status(200).json({ token: tokenForUser(req.user) })
 };
