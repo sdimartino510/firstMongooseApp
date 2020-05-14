@@ -4,8 +4,12 @@ const todoRoutes = require('./todoRoutes');
 const userRoutes = require('./userRoutes');
 const authRoutes = require('./authRoutes');
 
+//   /api
+// /api/todo
 router.use('/todos', todoRoutes);
-router.use('/user', userRoutes);
+// /api/user
+router.use('/user', userRoutes)
+// /api/auth
 router.use('/auth', authRoutes);
 
 module.exports = router;

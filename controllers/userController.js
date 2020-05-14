@@ -26,5 +26,13 @@ module.exports = {
     } catch (e) {
       return res.status(403).json(e);
     }
+  },
+  getUserTodos: async (req, res) => {
+    try {
+      const user = await User.findById(req.user._id).populate('todos');
+      return res.status(200).json(user.todos);
+    } catch (e) {
+      return res.status(403).json(e);
+    }
   }
 }
