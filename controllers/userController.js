@@ -34,5 +34,22 @@ module.exports = {
     } catch (e) {
       return res.status(403).json(e);
     }
+  },
+  deleteUserTodoById: async (req, res) => {
+    const { todoId } = req.params;
+    console.log(req.user);
+    try {
+      const todoToDelete = await Todo.findById(todoId);
+      if (!todoToDelete) {
+        return res.status(401).json({ error: 'No todo with that id' });
+      }
+      if (req.user._id.toString() !== todoToDelete.user.toString()) {
+        return res.status(401).json({ error: 'You cannot delete a todo that is not yours' });
+      }
+      const deletedTodo = await Todo.findByIdAndDelete(todoId);
+      return res.status(200).json(deletedTodo);
+    } catch (e) {
+      return res.status(403).json(e);
+    }
   }
 }
