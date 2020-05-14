@@ -6,7 +6,6 @@ module.exports = {
     if (!text) {
       return res.status(400).json({ error: 'Todo text cannot be blank'});
     }
-
     try {
       const newTodo = await new Todo({ text, user: req.user._id }).save();
       req.user.todos.push(newTodo);
@@ -16,6 +15,7 @@ module.exports = {
       return res.status(403).json(e);
     }
   },
+
   getAllUserEmails: async (req, res) => {
     try {
       const users = await User.find({}, 'email')
@@ -27,6 +27,7 @@ module.exports = {
       return res.status(403).json(e);
     }
   },
+
   getUserTodos: async (req, res) => {
     try {
       const user = await User.findById(req.user._id).populate('todos');
@@ -35,6 +36,7 @@ module.exports = {
       return res.status(403).json(e);
     }
   },
+  
   deleteUserTodoById: async (req, res) => {
     const { todoId } = req.params;
     console.log(req.user);
