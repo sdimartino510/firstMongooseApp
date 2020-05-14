@@ -18,7 +18,8 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/redux_todo_db',
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true
+    useCreateIndex: true,
+    useFindAndModify: false
   }
 );
 
